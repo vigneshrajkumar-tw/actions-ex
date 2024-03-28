@@ -22,3 +22,12 @@ jobs:
 
       - name: Build
         run: ci/build-app.sh
+      
+      - name: Test
+        run: ci/unit-test-app.sh
+
+# TODO::
+# Build and test: Clones down and run the gradle build command found in ci/build-app.sh, and thereafter runs the gradle test command found in ci/unit-test-app.sh
+# Build docker: runs both building of the docker image, and pushes it up to the hub
+# Component test: runs a docker-compose file with a python test to test the application.
+# Performance test: runs a docker-compose file with a k6 performance tester to test the application.
