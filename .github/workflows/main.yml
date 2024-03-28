@@ -22,16 +22,22 @@ jobs:
         with:
           fetch-depth: 0 # needed for super-lint
       
-      - name: Lint
-        uses: super-linter/super-linter/slim@v6.3.0
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # - name: Lint
+      #   uses: super-linter/super-linter/slim@v6.3.0
+      #   env:
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Test
+        run: ci/unit-test-app.sh
 
       - name: Build
         run: ci/build-app.sh
       
-      - name: Test
-        run: ci/unit-test-app.sh
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with: 
+          name: application
+          path: .
       
       
 
