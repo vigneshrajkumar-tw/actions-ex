@@ -8,6 +8,11 @@ on:
   workflow_dispatch:
 
 
+env:
+  docker_username: ${{ github.actor }} 
+  docker_password: ${{ secrets.GITHUB_TOKEN }}
+  GIT_COMMIT: ${{ github.sha }}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   my_job:
@@ -39,6 +44,18 @@ jobs:
           name: application
           path: .
       
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: application
+          path: .
+    
+      - name: Build docker
+        run: bash ci/build-docker.sh
+      
+      - name: Push docker
+        run: bash ci/push-docker.sh
+        
       
 
 # TODO::
