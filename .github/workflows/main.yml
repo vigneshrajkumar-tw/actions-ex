@@ -73,14 +73,14 @@ jobs:
     needs: [Docker]
     steps:
       - name: Execute component test
-        run: bash ci/component-test.sh
+        run: ci/component-test.sh
   
   Performance-Test:
     runs-on: ubuntu-22.04
     needs: [Docker]
     steps:
       - name: Execute component test
-        run: bash ci/component-test.sh
+        run: ci/component-test.sh
       
 
 # TODO::
