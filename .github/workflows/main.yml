@@ -15,7 +15,7 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  my_job:
+  Build:
     name: build
     # runtime on which the job will be run
     runs-on: ubuntu-22.04 
@@ -43,7 +43,11 @@ jobs:
         with: 
           name: application
           path: .
-      
+  
+  Docker:
+    runs-on: ubuntu-22.04
+    needs: [Build]
+    steps:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
@@ -56,7 +60,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
