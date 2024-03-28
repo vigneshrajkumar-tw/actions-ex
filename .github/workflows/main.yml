@@ -79,7 +79,7 @@ jobs:
           path: .
 
       - name: Execute component test
-        run: ci/component-test.sh
+        run: bash ci/component-test.sh
   
   Performance-Test:
     runs-on: ubuntu-22.04
@@ -92,7 +92,7 @@ jobs:
           path: .
       
       - name: Execute component test
-        run: ci/component-test.sh
+        run: bash ci/component-test.sh
       
 
 # TODO::
