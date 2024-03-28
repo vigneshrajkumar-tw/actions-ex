@@ -19,9 +19,11 @@ jobs:
     steps:
       - name: Clone
         uses: actions/checkout@v4  
+        with:
+          fetch-depth: 0 # needed for super-lint
       
       - name: Lint
-        uses: super-linter/super-linter@v6.3.0
+        uses: super-linter/super-linter/slim@v6.3.0
 
       - name: Build
         run: ci/build-app.sh
